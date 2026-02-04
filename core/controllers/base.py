@@ -731,11 +731,13 @@ class BaseHandler(
         if iframe_restriction is not None:
             if iframe_restriction == 'SAMEORIGIN':
                 self.response.headers['Content-Security-Policy'] = (
-                    'frame-ancestors \'self\''
+                    "frame-ancestors 'self'; "
+                    "font-src 'self' data: https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com;"
                 )
             elif iframe_restriction == 'DENY':
                 self.response.headers['Content-Security-Policy'] = (
-                    'frame-ancestors \'none\''
+                    "frame-ancestors 'none'; "
+                    "font-src 'self' data: https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com;"
                 )
             else:
                 raise Exception(
